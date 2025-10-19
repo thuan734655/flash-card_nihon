@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flashcards Hán Việt</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Flashcards Hán Việt</h1>
+    <div class="controls">
+      <label class="file-label">
+        <input id="fileInput" type="file" accept="application/json,.json" />
+        Tải file JSON
+      </label>
+      <label class="file-label" title="Nhập file từ vựng (Table_1: ことば/漢字/ベトナム語)">
+        <input id="fileInputLesson" type="file" accept="application/json,.json" />
+        Tải vocab (Table_1)
+      </label>
+      <button id="loadDefaultBtn" title="Đọc vocab_export.json trong repo">Đọc mặc định</button>
+      <select id="tableSelect">
+        <option value="all">Gộp tất cả bảng</option>
+        <option value="Table_1">Chỉ Table_1</option>
+        <option value="Table_2">Chỉ Table_2</option>
+      </select>
+      <select id="modeSelect">
+        <option value="words">Ôn tập từ Hán Việt</option>
+        <option value="examples">Ôn tập ví dụ</option>
+        <option value="lesson_table1">Ôn tập từ (Table_1)</option>
+      </select>
+      <label class="file-label" title="Đảo chiều cho bài từ vựng (VI -> JP)">
+        <input id="lessonReverse" type="checkbox" />
+        Đảo chiều (VI → JP)
+      </label>
+      <button id="shuffleBtn">Trộn</button>
+    </div>
+  </header>
+
+  <main class="board">
+    <section class="sidebar">
+      <div class="stats">
+        <div><strong>Tổng:</strong> <span id="totalCount">0</span></div>
+        <div><strong>Đã học:</strong> <span id="seenCount">0</span></div>
+        <div><strong>Đúng:</strong> <span id="correctCount">0</span></div>
+        <div><strong>Sai:</strong> <span id="wrongCount">0</span></div>
+        <div><strong>Độ chính xác:</strong> <span id="accuracy">0%</span></div>
+      </div>
+      <div class="help">
+        <h3>Hướng dẫn</h3>
+        <p>1) Nhấn "Đọc mặc định" hoặc tải `vocab_export.json`.</p>
+        <p>2) Chọn chế độ: Từ Hán Việt hoặc Ví dụ.</p>
+        <p>3) Nhấn vào thẻ để lật. Dùng mũi tên hoặc nút để chuyển.</p>
+      </div>
+    </section>
+
+    <section class="stage">
+      <div class="card" id="card">
+        <div class="front" id="cardFront"></div>
+        <div class="back" id="cardBack"></div>
+      </div>
+
+      <div class="actions">
+        <button id="prevBtn">◀ Trước</button>
+        <button id="flipBtn">Lật thẻ</button>
+        <button id="nextBtn">Sau ▶</button>
+      </div>
+      <div class="grading">
+        <button id="wrongBtn" class="danger">Sai</button>
+        <button id="correctBtn" class="success">Đúng</button>
+      </div>
+
+      <div class="progress">
+        <span id="progressText">0 / 0</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Flashcards offline. Không cần server.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
